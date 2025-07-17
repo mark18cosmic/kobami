@@ -45,8 +45,14 @@
 
             <!-- Submit Button -->
             <div>
-                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded">
-                    💾 Update Product
+                <button type="submit" class="bg-[#022954] hover:bg-[#011e3f] text-white 
+rounded-xl font-semibold font-sans 
+h-12 sm:h-14 px-4 sm:px-6 text-base sm:text-lg 
+flex items-center justify-center 
+shadow-md hover:shadow-xl transition-all duration-200 
+focus:outline-none focus:ring-4 focus:ring-[#022954]/40 w-full
+">
+                    Update Product
                 </button>
             </div>
         </form>

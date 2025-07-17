@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Vendor\ProductController as VendorProductController;
+use App\Http\Controllers\DashboardController;
+
 
 
 Route::get('/', function () {
@@ -15,13 +17,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/dashboard', function () {
-    if (Auth::user()->role === 'vendor') {
-        return view('vendor.dashboard');
-    } else {
-        return view('customer.dashboard');
-    }
-})->middleware(['auth', 'verified'])->name('dashboard');
+use Illuminate\Support\Facades\Auth;
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
 
 Route::middleware(['auth'])->prefix('vendor')->group(function () {
     Route::get('/products', [VendorProductController::class, 'index'])->name('vendor.products.index');

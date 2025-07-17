@@ -14,11 +14,11 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="font-sans text-gray-900 antialiased min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-white to-[#dbeeff]">
-    <header class="mb-8 flex items-center space-x-4">
-        <a href="/" aria-label="Kobami Home" class="flex items-center space-x-3">
-            <x-application-logo class="w-24 h-24 text-[#022954]" />
-            <span class="text-3xl font-semibold tracking-wide text-[#022954]">Kobami</span>
+<body class="font-sans text-gray-900 antialiased min-h-screen flex flex-col items-center justify-center">
+    <header class="flex items-center space-x-4">
+        <a href="/" aria-label="Kobami Home" class="flex items-center space-x-3 w-40">
+            <x-application-logo class="object-contain w-16" />
+            <!-- <span class="text-3xl font-semibold tracking-wide text-[#022954]">Kobami</span> -->
         </a>
     </header>
     

@@ -21,3 +21,4 @@ Kobami is a multi-vendor ecommerce platform built with Laravel, designed to empo
 - Composer
 - MySQL or compatible database
 - Node.js & npm (for frontend assets via Vite)
+- TailwindCSS

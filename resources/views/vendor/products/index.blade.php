@@ -1,35 +1,67 @@
 <x-app-layout>
-    <div class="py-6 px-4 max-w-5xl mx-auto">
-        <h2 class="text-xl font-bold mb-4">Your Products</h2>
+    <div class="py-6 px-4 m-6">
+<div class="flex flex-row justify-between items-center mb-4">
+    <h2 class="text-2xl font-bold">Your Products</h2>
 
-        <a href="{{ route('vendor.products.create') }}" class="mb-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-            ➕ Add New Product
-        </a>
+<a href="{{ route('vendor.products.create') }}" class="bg-[#022954] hover:bg-[#011e3f] text-white 
+rounded-xl font-semibold font-sans 
+h-12 sm:h-14 px-4 sm:px-6 text-base sm:text-lg 
+flex items-center justify-center 
+shadow-md hover:shadow-xl transition-all duration-200 
+focus:outline-none focus:ring-4 focus:ring-[#022954]/40
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            @forelse ($products as $product)
-                <div class="border p-4 rounded shadow">
-                    @if ($product->image_path)
-                        <img src="{{ asset('storage/' . $product->image_path) }}" alt="{{ $product->name }}" class="w-full h-40 object-cover mb-2 rounded" />
-                    @endif
-                    <h3 class="text-lg font-semibold">{{ $product->name }}</h3>
-                    <p class="text-sm text-gray-600">{{ $product->description }}</p>
-                    <p class="mt-2 font-semibold">MVR {{ number_format($product->price, 2) }}</p>
+">
+    New Product
+</a>
+    </div>
 
-                    <!-- Edit and Delete buttons -->
-                    <div class="mt-4 flex justify-between items-center">
-                        <a href="{{ route('vendor.products.edit', $product) }}" class="text-sm text-blue-600 hover:underline">✏️ Edit</a>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    @forelse ($products as $product)
+        <div class="border rounded-xl shadow hover:shadow-lg transition-shadow duration-300 p-5 flex flex-col">
+            @if ($product->image_path)
+                <img 
+                    src="{{ asset('storage/' . $product->image_path) }}" 
+                    alt="{{ $product->name }}" 
+                    class="w-full h-48 object-cover rounded-md mb-4"
+                />
+            @endif
 
-                        <form action="{{ route('vendor.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Delete this product?')" class="inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-sm text-red-600 hover:underline">🗑️ Delete</button>
-                        </form>
-                    </div>
-                </div>
-            @empty
-                <p>No products found. Start by <a href="{{ route('vendor.products.create') }}" class="text-blue-600 underline">adding one</a>.</p>
-            @endforelse
+            <div class='flex justify-between'>
+            <h3 class="text-lg font-semibold text-[#022954] mb-1 truncate" title="{{ $product->name }}">
+                {{ $product->name }}
+            </h3>
+            <a href="{{ route('vendor.products.edit', $product) }}" 
+   class="inline-block px-4 py-2 text-sm font-semibold text-white bg-[#022954] hover:bg-[#011e3f] rounded-xl transition">
+   Edit
+</a>
+
+            </div>
+            <p class="text-sm text-gray-600 flex-grow overflow-hidden line-clamp-3 mb-3" title="{{ $product->description }}">
+                {{ $product->description }}
+            </p>
+            <div class="flex justify-between">
+            <p class="mt-auto font-semibold text-[#022954] text-lg mb-4">
+                MVR {{ number_format($product->price, 2) }}
+            </p>
+            
+            <form action="{{ route('vendor.products.destroy', $product) }}" method="POST" onsubmit="return confirm('Delete this product?')" class="inline">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="text-sm text-white bg-red-500 hover:bg-red-700 inline-block px-4 py-2 rounded-xl items-center gap-1">
+                        Delete
+                    </button>
+                </form>
+
+            </div>
+
         </div>
+    @empty
+        <p class="col-span-full text-center text-gray-500">
+            No products found. Start by 
+            <a href="{{ route('vendor.products.create') }}" class="text-blue-600 underline hover:text-blue-700">adding one</a>.
+        </p>
+    @endforelse
+</div>
+
     </div>
 </x-app-layout>

@@ -54,9 +54,9 @@
             <!-- Actions -->
             <div class="flex flex-col items-center gap-4">
 
-            <x-primary-button class="bg-[#022954] hover:bg-[#011e3f] text-white flex justify-center w-full h-14 rounded-xl font-bold text-xl">
+            <button class="bg-[#022954] hover:bg-[#011e3f] transition shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-[#022954]/50 text-white flex justify-center w-full h-14 rounded-xl font-sans text-xl text-center items-center">
                     {{ __('Login') }}
-                </x-primary-button>
+                </button>
                 @if (Route::has('password.request'))
                     <a
                         class="underline text-md text-[#022954] hover:text-[#011e3f]"
