@@ -2,22 +2,23 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Vendor\ProductController as VendorProductController;
 use App\Http\Controllers\DashboardController;
-
-
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
+    if (Auth::check()) {
+        return app(HomeController::class)->index();
+    }
     return view('welcome');
-});
+})->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-use Illuminate\Support\Facades\Auth;
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
@@ -34,6 +35,11 @@ Route::middleware(['auth'])->prefix('vendor')->group(function () {
     Route::delete('/products/{product}', [VendorProductController::class, 'destroy'])->name('vendor.products.destroy');
 
 });
+
+use App\Http\Controllers\UserController;
+
+Route::get('/vendors/{user}', [UserController::class, 'show'])->name('vendors.show');
+
 
 
 require __DIR__.'/auth.php';
